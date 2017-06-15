@@ -22,10 +22,6 @@ class Testpage extends Component {
         <h1>
           Blog Post
         </h1>
-        <hr/>
-        <br/>
-        <input-group-lg>
-        <input-group-lg />
         <Link href="/">
           <a>Back to home</a>
         </Link>
