@@ -27,8 +27,8 @@ nextApp.prepare().then(() => {
 
   // Define all your backend handlers here...
 
-  app.get('/api/users', (request, response) => {
-    return response.json([ {name: 'Awesome User'} ]);
+  app.get('/api/post', (request, response) => {
+    return response.json([ {name: 'Blog Post'} ]);
   });
 
   // Handle everything that is not covered in above routes with next.js
