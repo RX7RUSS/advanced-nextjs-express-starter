@@ -14,7 +14,11 @@ const PORT = 3001;
 nextApp.prepare().then(() => {
   const app = express();
 
-  // Define all you backend handlers here...
+  // Define all your backend handlers here...
+
+  app.get('/api/users', (request, response) => {
+    return response.json([ {name: 'Awesome User'} ]);
+  });
 
   // Handle everything that is not covered in above routes with next.js
   app.get('*', (request, response) => {

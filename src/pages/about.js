@@ -10,6 +10,10 @@ function AboutPage() {
       <Link href="/">
         <a>Back to home</a>
       </Link>
+      <br/>
+      <Link href="/blogpost">
+        <a>Test</a>
+      </Link>
     </div>
   );
 }
