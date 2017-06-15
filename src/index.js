@@ -1,6 +1,17 @@
 import next from 'next';
 import path from 'path';
 import express from 'express';
+import mongoose from 'mongoose';
+// import bodyParser from 'body-parser';
+
+
+mongoose.connect(process.env.MONGODB_URI ||'mongodb://localhost/advanced-nextjs-express-starter');
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
+  console.log('MongoDB connected');
+});
 
 const dev = process.env.NODE_ENV !== 'production';
 const nextApp = next({
