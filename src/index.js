@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 // import bodyParser from 'body-parser';
 
 
-mongoose.connect(process.env.MONGODB_URI ||'mongodb://localhost/advanced-nextjs-express-starter');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/advanced-nextjs-express-starter');
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -27,14 +27,28 @@ nextApp.prepare().then(() => {
 
   // Define all your backend handlers here...
 
-  app.get('/api/post', (request, response) => {
-    return response.json([ {name: 'Blog Post'} ]);
+  app.get('/api/blogpost', (request, response) => {
+    return response.json([
+      {
+        title: 'First Blog Post'
+      }
+    ]);
+  });
+
+  app.post('/api/blogpost', (request, response) => {
+    const newBlogPost = {
+      ...request.body
+    };
+    // eslint-disable-next-line
+    blogpost.push(newBlogPost);
+    return response.json(newBlogPost);
   });
 
   // Handle everything that is not covered in above routes with next.js
   app.get('*', (request, response) => {
     return handle(request, response);
   });
+
 
   app.listen(PORT, () => {
     // eslint-disable-next-line

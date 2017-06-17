@@ -12,7 +12,7 @@ function AboutPage() {
       </Link>
       <br/>
       <Link href="/blogpost">
-        <a>Test</a>
+        <a>Blog</a>
       </Link>
     </div>
   );

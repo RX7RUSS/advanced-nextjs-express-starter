@@ -10,10 +10,11 @@
     "build": "next build src",
     "start": "babel-node src/index",
     "lint": "eslint src",
-    "postinstall": "npm run build" 
+    "postinstall": "npm run build"
   },
   "dependencies": {
     "express": "^4.15.3",
+    "mongoose": "^4.10.6",
     "next": "beta",
     "next-redux-wrapper": "^1.1.2",
     "react": "^15.5.4",
