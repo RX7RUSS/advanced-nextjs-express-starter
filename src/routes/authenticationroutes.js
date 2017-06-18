@@ -15,10 +15,30 @@ app.get('/api/users', function(request, response, next){
 
   if(!username || !password) {
     return res.status(422)
-      .json({error: 'name or password already in use'});
+      .json({error: 'You must provide Username and Password'});
   }
 
-  User.findOne({}).exec;
+  User.findOne({ username }).exec()
+    .then((existingUser) => {
+      if (existingUser) {
+        return res.status(422).json({ error: 'Username is in use'})
+      }
 
+      bcrypt.hash(password, 10, function(err, hashedPassword) {
+        if (err) {
+          return next(err);
+        }
 
-}
+        const user = new User({ username, password: hashedPassword });
+
+        user.save()
+          .then(user => res.json(user))
+
+      });
+
+    })
+    .catch(err => next(err));
+
+});
+
+module.exports = router;
