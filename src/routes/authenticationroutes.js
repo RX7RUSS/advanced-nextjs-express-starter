@@ -4,24 +4,36 @@ import express from 'express';
 import mongoose from 'mongoose';
 import User from '../models/usermodel';
 import bcrypt from 'bcrypt';
+import passport from '../services/passport'
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/users')
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/users');
 
 const app = express();
 
-app.get('/api/users', function(request, response, next){
+const signinStrategy = passport.authenticate('signinStrategy', { session: false });
 
-  const { username, password } = req.body;
+function tokenForUser(user) {
+  const timestamp = new Date().getTime();
+  return jwt.encode({ userId: user.id, iat: timestamp }, 'abc123')
+}
 
-  if(!username || !password) {
-    return res.status(422)
+app.post('/api/signin', signinStrategy, function(require, response, next) {
+  response.json({ message: 'You have been authenticated!'});
+});
+
+app.post('/api/signup', function (request, response, next) {
+
+  const { username, password } = request.body;
+
+  if (!username || !password) {
+    return response.status(422)
       .json({error: 'You must provide Username and Password'});
   }
 
   User.findOne({ username }).exec()
     .then((existingUser) => {
       if (existingUser) {
-        return res.status(422).json({ error: 'Username is in use'})
+        return response.status(422).json({ error: 'Username is in use'})
       }
 
       bcrypt.hash(password, 10, function(err, hashedPassword) {

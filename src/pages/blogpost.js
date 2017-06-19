@@ -4,7 +4,7 @@ import { initStore } from '../store';
 import withRedux from 'next-redux-wrapper';
 import Link from 'next/link';
 
-class Testpage extends Component {
+class Blogpost extends Component {
 
   // //   return { isServer };
   // // }
@@ -36,4 +36,4 @@ class Testpage extends Component {
 
 
 
-export default withRedux(initStore)(Testpage);
+export default withRedux(initStore)(Blogpost);
