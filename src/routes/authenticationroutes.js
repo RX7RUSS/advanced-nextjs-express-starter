@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 import User from '../models/usermodel';
 import bcrypt from 'bcrypt';
 
-mongoose.connect('mongodb://localhost/users')
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/users')
 
 const app = express();
 
