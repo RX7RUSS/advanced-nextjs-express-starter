@@ -1,5 +1,16 @@
 module.exports = {
-  // We change the distDir so we don't have the next
-  // files inside of our src/ directory
-  distDir: '../build'
+  distDir: 'build'
+  /*
+  exportPathMap: () => {
+    return {
+      "/": { page: "/" },
+    }
+  },
+  webpack: function (c) {
+    if (c.resolve.alias) {
+      delete c.resolve.alias['react']
+      delete c.resolve.alias['react-dom']
+    }
+    return c
+  },*/
 };

@@ -44,6 +44,7 @@ const PostController = {
       .then(item => {
         item.title = req.body.title || item.title;
         item.body = req.body.body || item.body;
+        item.added = req.body.added || item.added;
 
         item.save()
           .then(updatedItem => {

@@ -29,6 +29,13 @@ class Blogpost extends Component {
         <Link href="/about">
           <a>About</a>
         </Link>
+        <br/>
+        <br/>
+        <p>Title</p>
+        <input size="30" />
+        <br/>
+        <p>Body</p>
+        <input size="30" />
       </div>
     );
   }

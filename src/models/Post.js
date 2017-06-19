@@ -11,6 +11,11 @@ const postSchema = mongoose.Schema({
     maxlength: [ 300, 'Maximum character limit reached. Please try again.' ],
     required: true
   },
+  added: {
+    type: Date,
+    default: Date.now,
+    required: true
+  },
 });
 
 export default mongoose.model('Post', postSchema);

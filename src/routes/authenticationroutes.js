@@ -1,27 +1,29 @@
-import next from 'next';
-import path from 'path';
+// import next from 'next';
+// import path from 'path';
 import express from 'express';
 import mongoose from 'mongoose';
-import User from '../models/usermodel';
+import User from '../models/User';
 import bcrypt from 'bcrypt';
-import passport from '../services/passport'
+import passport from '../services/passport';
+import jwt from 'jwt-simple';
+
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/users');
 
-const app = express();
+const router = express.Router();
 
 const signinStrategy = passport.authenticate('signinStrategy', { session: false });
 
 function tokenForUser(user) {
   const timestamp = new Date().getTime();
-  return jwt.encode({ userId: user.id, iat: timestamp }, 'abc123')
+  return jwt.encode({ userId: user.id, iat: timestamp }, 'abc123');
 }
 
-app.post('/api/signin', signinStrategy, function(require, response, next) {
+router.post('/api/signin', signinStrategy, (require, response, next) => {
   response.json({ message: 'You have been authenticated!'});
 });
 
-app.post('/api/signup', function (request, response, next) {
+router.post('/api/signup', (request, response, next) => {
 
   const { username, password } = request.body;
 
@@ -31,12 +33,12 @@ app.post('/api/signup', function (request, response, next) {
   }
 
   User.findOne({ username }).exec()
-    .then((existingUser) => {
+    .then(existingUser => {
       if (existingUser) {
-        return response.status(422).json({ error: 'Username is in use'})
+        return response.status(422).json({ error: 'Username is in use'});
       }
 
-      bcrypt.hash(password, 10, function(err, hashedPassword) {
+      bcrypt.hash(password, 10, (err, hashedPassword) => {
         if (err) {
           return next(err);
         }
@@ -44,7 +46,8 @@ app.post('/api/signup', function (request, response, next) {
         const user = new User({ username, password: hashedPassword });
 
         user.save()
-          .then(user => res.json(user))
+          .then(newUser => response.json({ token: tokenForUser(newUser) }));
+
 
       });
 

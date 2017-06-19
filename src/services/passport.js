@@ -1,10 +1,10 @@
 import bcrypt from 'bcrypt';
 import passport from 'passport';
-import User from '../models/usermodel';
+import User from '../models/User';
 import LocalStrategy from 'passport-local';
 
 const signinStrategy = new LocalStrategy(function (username, password, done) {
-  User.findOne({ username: username }).exec()
+  User.findOne({ username }).exec()
 
   .then(user => {
     if (!user) {
