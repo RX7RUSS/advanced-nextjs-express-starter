@@ -19,6 +19,7 @@ const nextApp = next({
   dev,
   dir: path.resolve(__dirname)
 });
+
 const handle = nextApp.getRequestHandler();
 
 const PORT = process.env.PORT || 3001;

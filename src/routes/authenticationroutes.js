@@ -4,7 +4,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import User from '../models/User';
 import bcrypt from 'bcrypt';
-import passport from '../services/passport';
+import { passport } from '../services/passport';
 import jwt from 'jwt-simple';
 
 
@@ -12,14 +12,14 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/users');
 
 const router = express.Router();
 
-const signinStrategy = passport.authenticate('signinStrategy', { session: false });
+// const signinStrategy = passport.authenticate('signinStrategy', { session: false });
 
 function tokenForUser(user) {
   const timestamp = new Date().getTime();
   return jwt.encode({ userId: user.id, iat: timestamp }, 'abc123');
 }
 
-router.post('/api/signin', signinStrategy, (require, response, next) => {
+router.post('/api/signin', /* signinStrategy, */ (require, response, next) => {
   response.json({ message: 'You have been authenticated!'});
 });
 

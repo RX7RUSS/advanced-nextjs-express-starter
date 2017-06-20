@@ -24,6 +24,9 @@ var _inherits2 = require('babel-runtime/helpers/inherits');
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
+var _jsxFileName = '/Users/russellsavage/Desktop/ACA/Advanced/advanced-nextjs-express-starter/src/pages/blogpost.js?entry';
+// import { bindActionCreators } from 'redux';
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -64,12 +67,76 @@ var Blogpost = function (_Component) {
     // }
 
     value: function render() {
-      return _react2.default.createElement('div', null, _react2.default.createElement('h1', null, 'Blog Post'), _react2.default.createElement(_link2.default, { href: '/' }, _react2.default.createElement('a', null, 'Back to home')), _react2.default.createElement('br', null), _react2.default.createElement(_link2.default, { href: '/about' }, _react2.default.createElement('a', null, 'About')), _react2.default.createElement('br', null), _react2.default.createElement('br', null), _react2.default.createElement('p', null, 'Title'), _react2.default.createElement('input', { size: '30' }), _react2.default.createElement('br', null), _react2.default.createElement('p', null, 'Body'), _react2.default.createElement('input', { size: '30' }));
+      return _react2.default.createElement('div', {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 21
+        }
+      }, _react2.default.createElement('h1', {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 22
+        }
+      }, 'Blog Post'), _react2.default.createElement(_link2.default, { href: '/', __source: {
+          fileName: _jsxFileName,
+          lineNumber: 25
+        }
+      }, _react2.default.createElement('a', {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 26
+        }
+      }, 'Back to home')), _react2.default.createElement('br', {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 28
+        }
+      }), _react2.default.createElement(_link2.default, { href: '/about', __source: {
+          fileName: _jsxFileName,
+          lineNumber: 29
+        }
+      }, _react2.default.createElement('a', {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 30
+        }
+      }, 'About')), _react2.default.createElement('br', {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 32
+        }
+      }), _react2.default.createElement('br', {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 33
+        }
+      }), _react2.default.createElement('p', {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 34
+        }
+      }, 'Title'), _react2.default.createElement('input', { size: '30', __source: {
+          fileName: _jsxFileName,
+          lineNumber: 35
+        }
+      }), _react2.default.createElement('br', {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 36
+        }
+      }), _react2.default.createElement('p', {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 37
+        }
+      }, 'Body'), _react2.default.createElement('input', { size: '30', __source: {
+          fileName: _jsxFileName,
+          lineNumber: 38
+        }
+      }));
     }
   }]);
   return Blogpost;
 }(_react.Component);
-// import { bindActionCreators } from 'redux';
-
 
 exports.default = (0, _nextReduxWrapper2.default)(_store.initStore)(Blogpost);
