@@ -3,7 +3,8 @@ import passport from 'passport';
 import User from '../models/User';
 import LocalStrategy from 'passport-local';
 
-const signinStrategy = new LocalStrategy(function (username, password, done) {
+
+const signinStrategy = new LocalStrategy((username, password, done) => {
   User.findOne({ username }).exec()
 
   .then(user => {
@@ -11,7 +12,7 @@ const signinStrategy = new LocalStrategy(function (username, password, done) {
       return done(null, false);
     }
 
-    bcrypt.compare(password, user.password, function (err, isMatch) {
+    bcrypt.compare(password, user.password, (err, isMatch) => {
       if (err) {
         return done(err, false);
       }
@@ -26,5 +27,6 @@ const signinStrategy = new LocalStrategy(function (username, password, done) {
   })
   .catch(err => done(err, false));
 });
+
 
 passport.use('signinStrategy', signinStrategy);
