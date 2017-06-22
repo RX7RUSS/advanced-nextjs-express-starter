@@ -4,7 +4,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import User from '../models/User';
 import bcrypt from 'bcrypt';
-import passport from '../services/passport';
+import passport from 'passport';
 import jwt from 'jwt-simple';
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/users');
@@ -46,13 +46,10 @@ router.post('/api/signup', (request, response, next) => {
 
         user.save()
           .then(newUser => response.json({ token: tokenForUser(newUser) }));
-
-
       });
 
     })
     .catch(err => next(err));
-
 });
 
 module.exports = router;

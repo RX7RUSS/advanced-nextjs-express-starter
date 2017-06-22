@@ -32,29 +32,32 @@ nextApp.prepare().then(() => {
 
   app.use(authenticationRoutes);
 
-  // app.get('/api/blogpost', (request, response) => {
-  //   return response.json([
-  //     {
-  //       title: 'First Blog Post'
-  //     }
-  //   ]);
-  // });
-  //
-  // app.post('/api/blogpost', (request, response) => {
-  //   const newBlogPost = {
-  //     ...request.body
-  //   };
-  //   // eslint-disable-next-line
-  //   console.log('app.post is working')
-  //   blogpost.push(newBlogPost);
-  //   return response.json(newBlogPost);
-  // });
+  app.get('/api/blogpost', (request, response) => {
+    return response.json([
+      {
+        title: 'First Blog Post'
+      }
+    ]);
+  });
+
+  app.post('/api/blogpost', (request, response) => {
+    const newBlogPost = {
+      ...request.body
+    };
+    // eslint-disable-next-line
+    console.log('app.post is working')
+    blogpost.push(newBlogPost);
+    return response.json(newBlogPost);
+  });
 
   // Handle everything that is not covered in above routes with next.js
   app.get('*', (request, response) => {
     return handle(request, response);
   });
 
+  // app.post('*', (request, response) => {
+  //   return handle(request, response);
+  // });
 
   app.listen(PORT, () => {
     // eslint-disable-next-line
